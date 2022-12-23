@@ -1,0 +1,103 @@
+@include('layout.header')
+
+@include('layout.navbar')
+
+@include('layout.sidebar')
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1> EDIT SERVICE</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Service Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6" style="margin-left:150px;">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">service</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+    
+          <form action="{{url('/updateservice',$data->id)}}" method="post">
+
+           @if(Session::has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+        @endif
+        @if(Session::has('fail'))
+        <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+        @endif
+        @csrf
+     @method('PUT')
+                <div class="card-body">
+   
+ <div class="form-group">
+                    <label>Select category</label>
+         <select name="category1" class="form-control"  value="@if (!empty($data)){{ $data->category1 }}@else{{ old('catwgory1') }}@endif">
+            <option selected disabled >please select</option>
+                         @foreach($category1 as $add) 
+                    <option value="{{ $add->id }}" class="text-capitalize">
+                         {{ $add->name }}</option>
+                   @endforeach
+                                                
+            </select>
+        </div>
+  <div class="form-group">
+<label>Select subcategory</label>
+         <select name="subcategory1" class="form-control"  value="@if (!empty($data)){{ $data->subcategory1 }}@else{{ old('subcategory1') }}@endif">
+            <option selected disabled >please select</option>
+                         @foreach($subcategory1 as $add) 
+                    <option value="{{ $add->id }}" class="text-capitalize">
+                         {{ $add->name }}</option>
+                   @endforeach
+                                                
+            </select> 
+
+</div>
+<div class="form-group">
+       <label for="name">Name</label>
+                    <input type="text" class="form-control"  placeholder="name" name="name"  value="@if (!empty($data)){{ $data->name }}@else{{ old('name') }}@endif">
+                  </div>
+   <div class="form-group">
+       <label for="name">price</label>
+                    <input type="text" class="form-control"  placeholder="price" name="price"  value="@if (!empty($data)){{ $data->price }}@else{{ old('price') }}@endif">
+                  </div>
+
+                <div class="form-group">
+                    <label for="status">status</label>
+                    <input type="text" class="form-control"  placeholder="status" name="status"  value="@if (!empty($data)){{ $data->status }}@else{{ old('status') }}@endif">
+                  </div>
+                   <div class="form-group">
+                    <label for="image">image</label>
+                    <input type="file"  name="image" id="photo" value="@if (!empty($data)){{ $data->image }}@else{{ old('image') }}@endif">
+                      @if(!empty($data->image))
+                    <img src="{{asset('images/icons/'.$data->image) }}" width="80" height="80"></td>
+                                                        @endif
+                  </div> 
+                  
+                 </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>

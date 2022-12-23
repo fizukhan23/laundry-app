@@ -1,0 +1,18 @@
+$data=$request->input();
+      $username=$data['username'];
+      $password=$data['password'];
+      $admin =DB::table('admin')->where('email',$username)->first();
+      
+      if($admin->email==$username && Hash::check($password,$admin->password)){
+            $set_array=array('id'=>$admin->id,'username'=>$admin->email,'role' => $admin->role,'name'=> $admin->name);
+            $request->session()->put('admin_session',$set_array);
+           $request->session()->put('test',$admin);
+          // print_r($set_array);
+           //echo session('test');
+           return redirect('/admin/');
+      }else{
+            // return back()->with('success', 'Success! User created');
+            return back()->with('failed', 'Failed! Invalid');
+      }
+      
+    }

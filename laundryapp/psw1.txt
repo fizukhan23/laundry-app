@@ -1,0 +1,9 @@
+wkm]?v^g]5^%
+
+
+
+1) add button with edit,delete as update status and material
+2) create form make all input fields like edit with value and make them readonly
+3) make select dropdown with 3 values as accept and reject and delivered
+4) in controller accept all values and update it
+5) Add one more column in view order status="accept","reject","order completed"

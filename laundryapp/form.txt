@@ -1,0 +1,31 @@
+public function add(Request $req){
+        $dummy = new Dummy; //Dummy is model name
+        $dummy->uname=$req->name; //uname - table column name , name=form input name
+        $dummy->email = $req->email;
+        $dummy->mobile = $req->mobile;
+        
+        $dummy->password=Hash::make( $req->password);
+        $result = $dummy->save();
+		
+	//return $result;
+
+        // $dp = Dummy::all();
+
+	//json format return
+        if($result){
+            $output['response']='true';
+            //$output['result']=$dummy;
+        }else{
+            $output['response']='false';
+        }
+        print_r(json_encode($output));
+    
+    }
+
+
+ <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+
+//laravel linking
+
+ <link rel="stylesheet" href="{{ asset('adminpanel') }}/dist/css/adminlte.min.css">

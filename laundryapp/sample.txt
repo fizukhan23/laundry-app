@@ -1,0 +1,19 @@
+User management 
+
+Add
+View
+
+Add-click - add form
+paste general element quick form
+name,email,city,mobile
+
+action=url('/save') post
+@csrf
+
+web.php
+
+route.get - route name
+
+dd($request->input());
+
+@include('
